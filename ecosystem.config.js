@@ -9,9 +9,9 @@ module.exports = {
     {
       name      : 'image-utils-web',
       script    : 'server.js',
-      env: {
-        PORT: 3011
-      },
+      // env: {  If we don't comment here, it will override below deploy config
+      //   PORT: 3011
+      // },
       env_production : {
         NODE_ENV: 'production'
       }
