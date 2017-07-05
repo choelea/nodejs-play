@@ -1,0 +1,42 @@
+{{#> layouts/main title="Image List" }}
+{{#*inline "content-block"}}
+<div class="container">
+    <h3>Image List</h3>
+    <div id="actionPanel" class="panel">
+        <a href="javascript:" action="/images/zip/{{uuid}}" id="downloadZip" class="btn btn-sm btn-primary">Zip All Files</a>
+    </div>
+    <div class="panel">
+        <ul class="list-group" id="fileList">
+            {{#each images}}
+            <li class="list-group-item"><img src="{{this}}" /></li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+{{/inline}} {{#*inline "myJS"}}
+<script>
+    // GOOD
+    $(initPage); // or $(document).ready(initPage);
+    function initPage() {
+        $("#downloadZip").click(zipFiles);
+    }
+    function zipFiles() {
+        var url = $(this).attr('action');
+        var jqxhr = $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "json"
+        });
+        jqxhr.done(showDownloadLink);
+        jqxhr.fail(failureHandler);
+    }
+
+    function showDownloadLink(data) {
+        $("#downloadZip").hide();
+        $("#actionPanel").append("<a href='"+data.url+"' class='btn btn-sm btn-primary' target='_blank'>Download Ziped File</a>");
+    }
+    function failureHandler(data) {
+        console.log(data);
+    }
+</script>
+{{/inline}} {{/layouts/main}}

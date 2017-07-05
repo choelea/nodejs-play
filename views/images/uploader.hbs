@@ -1,0 +1,51 @@
+{{#> layouts/main title="Page One" }}
+  {{#*inline "customHead"}}
+    <link rel="stylesheet" href="/public/css/images.css"> 
+  {{/inline}}
+
+  {{#*inline "content-block"}}
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Upload Files</strong> <small>Bootstrap files upload</small></div>
+        <div class="panel-body">
+
+          <!-- Standar Form -->
+          <h4>Select files from your computer</h4>
+          <form action="/images/upload" method="post" enctype="multipart/form-data" id="js-upload-form">
+            <div class="form-inline">
+              <div class="form-group">
+                <input type="file" name="images" id="js-upload-files" multiple>
+              </div>
+              <button type="submit" class="btn btn-sm btn-primary float-right" style="float:right" id="js-upload-submit">Upload files</button>
+            </div>
+          </form>
+
+          <!-- Drop Zone -->
+          <h4>Or drag and drop files below</h4>
+          <div class="upload-drop-zone" id="drop-zone">
+            Just drag and drop files here
+          </div>
+
+          <!-- Progress Bar -->
+          {{!--<div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+              <span class="sr-only">60% Complete</span>
+            </div>
+          </div>--}}
+
+          <!-- Upload Finished -->
+          <div class="js-upload-finished">
+            <h3>Selected files</h3>
+            <ul class="list-group" id="fileList">
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/inline}}
+
+  {{#*inline "myJS"}}
+    <script src="/public/js/images-uploader.js"></script>
+  {{/inline}}
+{{/layouts/main}}
