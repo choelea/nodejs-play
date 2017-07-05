@@ -10,7 +10,7 @@ module.exports = {
       name      : 'image-utils-web',
       script    : 'server.js',
       env: {
-        COMMON_VARIABLE: 'true'
+        PORT: 3011
       },
       env_production : {
         NODE_ENV: 'production'
@@ -32,14 +32,15 @@ module.exports = {
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     },
     dev : {
-      user : 'node',
-      host : '212.83.163.1',
+      user : 'osboxes',
+      host : '192.168.1.186',
       ref  : 'origin/master',
-      repo : 'git@github.com:repo.git',
-      path : '/var/www/development',
+      repo : 'https://github.com/choelea/image-utils-web.git',
+      path : '/home/osboxes/temp',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env dev',
       env  : {
-        NODE_ENV: 'dev'
+        NODE_ENV: 'dev',
+		PORT: 3012
       }
     }
   }
