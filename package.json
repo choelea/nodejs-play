@@ -1,6 +1,12 @@
 {
   "name": "image-utils-web",
   "version": "1.0.0",
+  "description": "Images Tools",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/choelea/image-utils-web.git"
+  },
   "scripts": {
     "start": "node --harmony ./server.js"
   },
