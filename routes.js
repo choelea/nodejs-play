@@ -1,4 +1,5 @@
 const passport = require('passport')
+const auth = require('./config/auth')
 
 function create(app) {
     app.use('/', require('./routes/default'));
@@ -12,17 +13,21 @@ function create(app) {
 
     app.post('/login',
         passport.authenticate('local', {
-            successRedirect: '/session-demo',
             failureRedirect: '/login',
             failureFlash: true
-        }));
-    app.get('/logout', function (req, res) {
+        }), (req, res) => {
+            const redirectTo = req.session.returnTo? req.session.returnTo: '/session-demo';
+            delete req.session.returnTo;
+            res.redirect(redirectTo);
+        });
+
+    app.get('/logout', (req, res) => {
         req.logout();
         res.redirect('/session-demo');
     });
-    app.get('/me', (req, res) => {
+    app.get('/me', auth.requiresLogin, (req, res) => {
         console.log(`current user is ${req.user}`)
-        res.json({'user':req.user});
+        res.json({ 'user': req.user });
     });
 
     app.use((req, res, next) => {
