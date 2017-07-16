@@ -6,6 +6,7 @@
 
 const LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport');
+const linkedin = require('./passport/passport-linkedin');
 /**
  * Expose
  */
@@ -28,4 +29,5 @@ passport.use('local',new LocalStrategy(
         return done(null, { "username": username, "password": password },{message:'Successfully authenticated!'});
     }
 ));
+passport.use(linkedin);
 module.exports = passport;

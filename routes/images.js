@@ -1,10 +1,12 @@
-let router = require('express').Router();
-var multer = require('multer');
+'use strict';
+
+const router = require('express').Router();
+const multer = require('multer');
 const uuidv1 = require('uuid/v1');
 const fs = require('fs');
 const im = require('imagemagick');
-var zipFolder = require('zip-folder');
-var upload = multer({ dest: 'uploads/tmp', limits: { fields: 10, fileSize: '20MB', files: 20 } })
+const zipFolder = require('zip-folder');
+const upload = multer({ dest: 'uploads/tmp', limits: { fields: 10, fileSize: '20MB', files: 20 } })
 
 router.get('/', (req, res) => {
     res.render('images/uploader', {
@@ -15,10 +17,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/zip/:uuid', (req, res) => {
-    var images = [];
+    let images = [];
     const uuid = req.params.uuid;
     const dir = 'uploads/' + uuid;
-    var returnJson = {};
+    let returnJson = {};
     zipFolder(dir, 'uploads/' + uuid + ".zip", function (err) {
         if (err) {
            throw err
