@@ -8,6 +8,7 @@ let loki = require('lokijs');
 let routes = require('./routes');
 var hbs = require('hbs');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 //setup
 let database = new loki('database.loki', { autoload: true, autosave: true });
@@ -25,6 +26,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({ secret: 'xiaocheng', resave: false, saveUninitialized: false }));
+const passport = require('./config/passport');
+app.use(passport.initialize());
+app.use(flash());
+
 app.use('/public', express.static('public'));
 app.use('/uploads', express.static('uploads'));
 //loki db reference for the router

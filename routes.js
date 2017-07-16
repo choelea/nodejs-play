@@ -1,9 +1,25 @@
-
+const passport = require('passport')
 
 function create(app) {
-    app.use('/',         require('./routes/default'));
-    app.use('/images',    require('./routes/images'));
-    app.use('/session-demo',    require('./routes/session-demo'));
+    app.use('/', require('./routes/default'));
+    app.use('/images', require('./routes/images'));
+    app.use('/session-demo', require('./routes/session-demo'));
+
+    app.get('/login', (req, res) => {
+        let errors = req.flash('error');
+        res.render('login', { 'errors': errors })
+    });
+
+    app.post('/login',
+        passport.authenticate('local', {
+            successRedirect: '/session-demo',
+            failureRedirect: '/login',
+            failureFlash: true
+        }));
+    app.get('/logout', function (req, res) {
+        req.logout();
+        res.redirect('/session-demo');
+    });
 
     app.use((req, res, next) => {
         res.status(404);
