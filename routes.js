@@ -20,6 +20,10 @@ function create(app) {
         req.logout();
         res.redirect('/session-demo');
     });
+    app.get('/me', (req, res) => {
+        console.log(`current user is ${req.user}`)
+        res.json({'user':req.user});
+    });
 
     app.use((req, res, next) => {
         res.status(404);

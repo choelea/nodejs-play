@@ -28,6 +28,7 @@ app.use(cookieParser());
 app.use(session({ secret: 'xiaocheng', resave: false, saveUninitialized: false }));
 const passport = require('./config/passport');
 app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 
 app.use('/public', express.static('public'));

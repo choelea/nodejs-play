@@ -9,9 +9,13 @@ const passport = require('passport');
 /**
  * Expose
  */
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
 
-passport.serializeUser((user, cb) => cb(null, user));
-passport.deserializeUser((user, cb) => user);
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 // use these strategies
 passport.use('local',new LocalStrategy(
