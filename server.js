@@ -11,7 +11,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const recaptcha = require('express-recaptcha');
 
-recaptcha.init('6LfaQC8UAAAAABBNfVLuzxHgBunLLFfObOl0V0Yo', '6LfaQC8UAAAAAPMy_PhendzxrMlRfX7hry8UWt08');
+recaptcha.init('6LesOy8UAAAAAJ_aOYzwKkPbyuTXU2Ec6Nc2xYWb', '6LesOy8UAAAAAFBj7d_tYYJpkibwIgU4bMtfmWH7');
 //setup
 let database = new loki('database.loki', { autoload: true, autosave: true });
 let app = express();
