@@ -51,7 +51,7 @@ router.get('/:uuid', (req, res) => {
 });
 
 /** upload images: 1, upload to uploads/tmp */
-router.post('/upload',recaptcha.middleware.render, upload.array('images'), function (req, res, next) {
+router.post('/upload',recaptcha.middleware.verify, upload.array('images'), function (req, res, next) {
     let uuid = uuidv1();
     let targetFolder = 'uploads/' + uuid;
     fs.mkdir(targetFolder, (error) => { if (error) throw error });
