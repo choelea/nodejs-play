@@ -6,6 +6,7 @@ const uuidv1 = require('uuid/v1');
 const fs = require('fs');
 const im = require('imagemagick');
 const zipFolder = require('zip-folder');
+var recaptcha = require('express-recaptcha');
 const upload = multer({ dest: 'uploads/tmp', limits: { fields: 10, fileSize: '20MB', files: 20 } })
 
 router.get('/', (req, res) => {
@@ -50,7 +51,7 @@ router.get('/:uuid', (req, res) => {
 });
 
 /** upload images: 1, upload to uploads/tmp */
-router.post('/upload', upload.array('images'), function (req, res, next) {
+router.post('/upload',recaptcha.middleware.render, upload.array('images'), function (req, res, next) {
     let uuid = uuidv1();
     let targetFolder = 'uploads/' + uuid;
     fs.mkdir(targetFolder, (error) => { if (error) throw error });

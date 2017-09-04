@@ -6,10 +6,12 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let loki = require('lokijs');
 let routes = require('./routes');
-var hbs = require('hbs');
+const hbs = require('hbs');
 const session = require('express-session');
 const flash = require('connect-flash');
+const recaptcha = require('express-recaptcha');
 
+recaptcha.init('6LfaQC8UAAAAABBNfVLuzxHgBunLLFfObOl0V0Yo', '6LfaQC8UAAAAAPMy_PhendzxrMlRfX7hry8UWt08');
 //setup
 let database = new loki('database.loki', { autoload: true, autosave: true });
 let app = express();

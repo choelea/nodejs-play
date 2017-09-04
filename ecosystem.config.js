@@ -31,6 +31,14 @@ module.exports = {
       path : '/home/joe/nodejsapp/nodejs-playaround',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     },
+    reCap : {
+      user : 'joe',
+      host : '182.254.242.31',
+      ref  : 'origin/google-reCAPTCHA',
+      repo : 'https://github.com/choelea/image-utils-web.git',
+      path : '/home/joe/nodejsapp/nodejs-playaround',
+      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
+    },
     dev : {
       user : 'osboxes',
       host : '192.168.1.186',
@@ -40,8 +48,8 @@ module.exports = {
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env dev',
       env  : {
         NODE_ENV: 'dev',
-		PORT: 3012
+		    PORT: 3012
       }
-    }
+    },
   }
 };
