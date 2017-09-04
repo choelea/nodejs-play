@@ -12,7 +12,6 @@ const upload = multer({ dest: 'uploads/tmp', limits: { fields: 10, fileSize: '20
 router.get('/', (req, res) => {
     res.render('images/uploader', {
         title: 'Compress Images',
-        myCSSs: ['images.css'],
         myJSs: ['images-uploader.js']
     });
 });
