@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
 
 router.post('/demo/form', recaptcha.middleware.verify, function(req, res){
     console.log(req.recaptcha);
+    res.json(req.recaptcha);
 });
 
 module.exports = router;
