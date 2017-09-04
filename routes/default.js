@@ -1,13 +1,13 @@
 'use strict';
 
-let router = require('express').Router();
-
+const router = require('express').Router();
+const recaptcha = require('express-recaptcha');
 
 router.get('/', (req, res) => {
     res.render('home');
 });
 
-app.post('/demo/form', recaptcha.middleware.verify, function(req, res){
+router.post('/demo/form', recaptcha.middleware.verify, function(req, res){
     console.log(req.recaptcha);
 });
 
