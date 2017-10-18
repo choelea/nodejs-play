@@ -7,5 +7,10 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/websocket', (req, res) => {
+    res.render('websocket', {
+        title: 'LEAN'
+    });
+});
 
 module.exports = router;
